@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Calculator+ · Portfolio</title>
+    <!-- Google Font & Font Awesome for icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f7fb;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem;
+            color: #1e293b;
+            line-height: 1.5;
+        }
+
+        .portfolio-card {
+            max-width: 880px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            padding: 2.5rem 2.8rem;
+            transition: box-shadow 0.25s ease;
+        }
+
+        @media (max-width: 600px) {
+            .portfolio-card {
+                padding: 1.8rem 1.2rem;
+                border-radius: 1.8rem;
+            }
+        }
+
+        /* header / identity */
+        .portfolio-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.25rem;
+            border-bottom: 1px solid #e9edf2;
+            padding-bottom: 1.75rem;
+            gap: 1rem;
+        }
+
+        .identity {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .app-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            flex-shrink: 0;
+            display: block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .identity h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(145deg, #0b2b4a, #1e4b6e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.2rem;
+        }
+
+        .identity .tagline {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .identity .tagline i {
+            color: #3b82f6;
+            font-size: 0.9rem;
+        }
+
+        .badge-portfolio {
+            background: #eef2ff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1e4b6e;
+            border: 1px solid #dbe7f5;
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-portfolio i {
+            margin-right: 6px;
+            color: #2563eb;
+        }
+
+        /* about / desc */
+        .desc-section {
+            margin-bottom: 2.25rem;
+        }
+
+        .desc-section h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: #64748b;
+            margin-bottom: 0.75rem;
+        }
+
+        .desc-section p {
+            font-size: 1rem;
+            color: #1e293b;
+            max-width: 720px;
+        }
+
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .pill-list span {
+            background: #f1f5f9;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e3b5c;
+            border: 1px solid #e2e8f0;
+        }
+
+        .pill-list i {
+            margin-right: 0.3rem;
+            font-size: 0.7rem;
+            color: #3b82f6;
+        }
+
+        /* data safety card */
+        .safety-grid {
+            background: #f8fafc;
+            border-radius: 1.5rem;
+            padding: 1.5rem 1.8rem;
+            margin: 2rem 0 2.2rem 0;
+            border: 1px solid #eef2f6;
+        }
+
+        .safety-grid h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #0b2b4a;
+            margin-bottom: 0.75rem;
+        }
+
+        .safety-grid h3 i {
+            color: #1e4b6e;
+        }
+
+        .safety-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        .safety-item i {
+            width: 1.3rem;
+            color: #2563eb;
+        }
+
+        .safety-item .muted {
+            color: #475569;
+            font-weight: 400;
+        }
+
+        .divider-light {
+            margin: 0.5rem 0 0.75rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #dce3ec, transparent);
+        }
+
+        /* changelog + support */
+        .update-box {
+            background: #ffffff;
+            border-radius: 1.25rem;
+            padding: 1.25rem 1.5rem;
+            border: 1px solid #e9edf2;
+            margin-bottom: 1.75rem;
+        }
+
+        .update-box strong {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #475569;
+            margin-bottom: 0.3rem;
+        }
+
+        .update-box p {
+            color: #1e293b;
+        }
+
+        .support-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.2rem 2.5rem;
+            background: #f8fafc;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.8rem;
+            margin-top: 1.5rem;
+            border: 1px solid #ecf1f7;
+        }
+
+        .support-row .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 450;
+        }
+
+        .support-row .contact-item i {
+            color: #2563eb;
+            width: 1.4rem;
+            font-size: 1rem;
+        }
+
+        .support-row .contact-item .label {
+            color: #64748b;
+            font-weight: 400;
+            margin-right: 0.2rem;
+        }
+
+        .developer-note {
+            font-size: 0.85rem;
+            color: #475569;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .developer-note .dev-detail {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 1.2rem;
+        }
+
+        .developer-note .dev-detail span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .developer-note .dev-detail i {
+            color: #475569;
+            font-size: 0.8rem;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid #d0d9e6;
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #1e4b6e;
+            transition: 0.15s;
+            cursor: default;
+        }
+
+        .btn-ghost i {
+            margin-right: 0.3rem;
+        }
+
+        /* responsive touches */
+        @media (max-width: 600px) {
+            .support-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            .developer-note {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            .portfolio-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .identity {
+                width: 100%;
+            }
+
+            .badge-portfolio {
+                align-self: flex-start;
+            }
+        }
+
+        .footer-small {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            border-top: 1px solid #edf2f7;
+            padding-top: 1.5rem;
+        }
+
+        .footer-small a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-small a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="portfolio-card" role="main">
+
+        <!-- header: icon + project name + portfolio badge -->
+        <div class="portfolio-header">
+            <div class="identity">
+                <img class="app-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAArrSURBVHhe7VxbjF1VGf7Wvp37nGnnctqObWk7U1tBrAiJYjuURsILIVGI0UA0aGLikwnqi8aApPJgTDTRhAdf8NGY4JtCgiDGEMCSVCWiFmg7U9qZKXM5M3Nu+7KW37/OqSGgbGbmtOlk9tcs9j77dvb/7e///n/tOUFBYKCOP5afNEZ9zwC3AGobd7h23xYB4w6VwaxR5g+uq08+/4POm7JdCTmTjxYfUsr8jB8r9uitDoOz/M8XX/hh65Q69kj+dkep35Ocgd7uDAJjXk8C9w7HUc63M3L+B5Q67EbmQcfA3N7blOE9MEZ/1YFRI73PGd4DFq2P0n62VrVaCxwHeae3nuH/ICMoBRlBKcgISkFGUAoyglKQEZSCjKAUZASlICMoBZuWoMAN8LnxE/j6zQ/g3rF7UPGvzguJTUmQ63i4Z+I4askqVhdeh7o8g2POJ1Hy+/++b1MStKMyiqG4zrUEyuFsu2TgtZqoqaHuAX3EpiRotDyMYl6j4BmqiYrKAcrVGI6LvSP6h01H0LZCFfePfwS1oouy56DCCHLyFwYXqLglOKq/IW0qgkq5Er5121HsCpYxUvSxd1sOO6sBqoGDwANq+eGtS9BAvoLvfPYujAULiKIOFFVTzbvYM1rC4b0lHJooYPeeEhT/9RPXPUGu4+C23TfiseMncCA3h6SzAqUdJEnCm6c506RzORc7RwPs3bGEWqW/Rn1dEzQxvBffn7wXDx8Zw4iZRtxaBLSGhg+YmPRo1jFukqVj6EUh7t530LYB/cJ1SdDOgRq+e/TzePz2T+BIpQ4VL0OHLSpHs6yXyUgHDodSBqFOECakiEsZH68kuGXXwd6VNo7riiDxma8cuRM/mTyKye0tBNFFmHAeqrPAG2WZUlXouAMT1RG3l+C4CuSGilGgT9toXL2CL+zfg6HS9u5FN4jrgqBKfgD33XQMv7jrHty/20E5uYCofQlxuAzETCU1QM/xEXdWqaZVbmugWKrC9fI8mz6kNMlyoJUHj6k3iHncd+jWvlQ0dcejRdNb/1BQLB+Hhw9hRC+jVqUb+Dk4wRCMW8V8u4N/zf4brTjBahRjpc0APwB5P4/j+27GfQf2oOatUB0NJCTAGKYL78qYHJcukqiJTsh9SQjP81Fio+jnt6HDayy1uU1F8D2XKvLoU3MIowi6sA8nT72GqcUL3S9bJ9ZMUMEv4oGhT2HUewu3Hh5BIARR6q7j8klz0EC1U8HltsFcW2OGy7/PTuP88iqml6Z5BcUn6+K2sXE2fDdgl7dIS+GgfyhrrqxQisTEDDJqQydtxGLMRiFfKKNQGoJD5cRkcJUPokODzjkaRfqRR8UIye3WO4j9MTz5xixemDpj73u9WDNBOcfHl0rjuGl3Bwf3jjCogAEbKsvheo4EUdaGz5Zy72awkb9QMiB6KwNXXrl7THvaBs+dMEIAA9YJSUliqxgt2xm85+WolipyhSGmlEfPkcrlWnNua6afCVm9EgQ81uc9GKqs2ZxH6I7iV2fO44WLM/a+14s1J6mwOVIrYcdgTK0s0RQXoZI6g6R5MigpusZwaAbP7YjmqIQ5LmegWm9A119FsvgKwpUpRI1ZdFYvo7VyCSHX41DSK4IbFFEc2IHB4QkMcBTKNZLvIiKJFCVaJKnNNGQpIykkh+u+0C7b+L2ez4ZR1nkvG4V7w3H/0d76h0LC4JfYrE7uHUWBZqgQ2e2y1EmL5fgdtigrSGiwSdymGtpdhTAdRBV8xPwc8wTfpoofFKiQ7ciVRphCg1zWkMsPwqU/KU6wDJXIM2yorcQg5vlMQg56j25xNDlCEsKHwmOkwinOXuX4P88bXFxh77QBrDnFrmC0vA0PHhzFnSN0AT55SY1YewxsgLFXmHJSlmWaTTapCrLSS0F+lh7GLdpjjK00TE8SZtdtAyheJv8kLR10WMnIsLzcYOes4SasZknTHuuSHElnOpC9L8c0eE4ec/E2PPziKbTpZRvBmhV0BY2wjZdnFpAEBzBRdOD4g/Dy9CSvSE8KusQQXaJIgGQz/cvxKH+H6qB3gYTJbyesOdvjfNsZy/Ga5wtFEVUo3qSSBtNIVNOAE9eZXaIaUkhylPgdv1OTeD9g6ef6b6freO2dy/YeNoI1e9AVSDv/maEjuKvGSlYQYkrcKgpgYAxWOQXGzG1UiuOJqoZ4TKVLimwnGTKEUOV2CTOWVKaTjiiOhu2gHZZ9X6/ShJvwTRuuKNHetiQRTZkcSYWTF2cByTG85mIS4LkLb3P/xrFugspMo9wlF5fn5u1NORI8h5IUs8QUeHVRkjxdIaO3tE+9++QlbQwrmU6YpkwbSBMYLZGcZZtCMnzOr3xH6haJYapKjyRpypmXvRTzm2nV4gPjBypUHsCvz9ZRbzMF+4B1EzTCWXMp72C+HiFOxDO66N68VBMGL2YsaiAJhoZqGLBhimimi6aR63iJ8S3SoqQXormHCySFKuF+JT4lFxSPkfPtF/B7bIWk6UuLkKyQvJhVi6oUq2M4p+o5PHfe/kC1L1gXQfLO5cTOm/DpCY0KhSIVzMQMPlrhWLbpoUUJJERTFVoIkAmnJYXVrU0yWG3scVSODkmUHMd9lkQhxJIpilFMOTFuWZJ4IZDtoesFCMpj7Fw5RLEM5e1OgCdOn2axsE7WF6yLIPGfJg2a9QTjYxUGGXNIMKKasBug9EVCgCWlR4ws2QQaaQdERexZDE1YiBCaZVhCZGkJ6TaRsl/xWJdzLp/l32cbENjGkT4n5s7vnQldnHzlb5hvfvD0Zq1YF0EJn+gsO9jpBYNGzLynEcecULbjIhbaDuZanALErERSoViRJOWkw1VCnqjCpp+sc7vkBgmXEt81XD59ppGWSWqvt3HoazL3cgN6XDDIDaxU/H5JTTBNZ8Mcfnx6CjON/pIjWHcfJJPWEVavaqCsiYoAxKznmk0stVZxonwAd++vYt8uTi2opuXlbuoVvIhtQESSbUdk/UPSRUxE+iR5gyglXxsaP2foPV1ZkkEfE6eRMm7NmiRPdSr40atnMHsVyBGsm6A0VFjFvjkxgaMH8kytGE/9cZbpmMeN+9klKzZ48gNkNpJdEqgUKxWmjKiNhDIHuZ/EWfWtUOpMPJ4nB8obRZlc/IltzpP/PI/FVsN+59XAuhvFNIT0hdP1JcwzVl8V8NZbq9jDOdzYSI4TUJdZxf5I1GIdRwQkJEnFonfRo2ROZRXDIWVc9ktroHmti2EJT7w+j6fePIdmxHOuIq6agt6NgHOuOyvjuHusjYMsOo4NluYq2tFCD5Uhg/6k2d9Iv2PLu/Q10nQKeSTmUljG76ZX8OzUBayyk78WuCYECQok6WsfY+e9i82flpfvVAc9R3MOJSlmTZdGrpV02dKJc/bubseby22caxj8ZbaOv87NIGTFvJa4ZgQJ5BXo+PAYbq3VgM6UnYGL2UuiJVY9XPMGOamo4h+X38YSu+GFdov7+tfXrBXXlKDNiHX1QVsJGUEpyAhKQUZQCjKCUpARlIKMoBRkBKUgIygFGUEpyAhKQUZQCjKCUpARlIKMoBRkBKUgIygFjjG9X0BleB+MMQ35n5tc6n3O8D6o00wx82zvU4Z3w1BACr90HFc/zg9ne5sz/Bfm6app/sY993yyuG/Se4lsHVNKDff2bmXIn3ifdkPnoWdORvJ71S7ueKQ8DJV82QDfYO4d5A75w/iWgRgyFF5WBj/vLLeeeemnaAHAfwB8ow5Vus/kiwAAAABJRU5ErkJggg==" alt="App icon for Nutrition Calculator+">
+                <div>
+                    <h1>Nutrition Calculator+</h1>
+                    <div class="tagline">
+                        <i class="fas fa-robot"></i> AI‑powered food analysis · Google Vision
+                        <span style="display:inline-block; margin-left:0.5rem; color:#94a3b8;">|</span>
+                        <span style="font-weight: 400; color:#475569;"><i class="fas fa-mobile-alt" style="font-size:0.8rem;"></i> Android</span>
+                    </div>
+                </div>
+            </div>
+            <div class="badge-portfolio">
+                <i class="fas fa-briefcase"></i> portfolio project
+            </div>
+        </div>
+
+        <!-- description -->
+        <section class="desc-section">
+            <h2>About this project</h2>
+            <p>
+                This app uses Google Vision AI to analyze user‑uploaded food images and returns
+                the detected food name or ingredients, together with nutrition facts in a standard format.
+                Serving sizes are estimated by the AI; you can adjust the values if your portion differs.
+            </p>
+            <div class="pill-list">
+                <span><i class="fas fa-camera"></i> Image recognition</span>
+                <span><i class="fas fa-chart-pie"></i> Nutrition facts</span>
+                <span><i class="fas fa-cloud-upload-alt"></i> Google Vision API</span>
+                <span><i class="fas fa-shield-alt"></i> Privacy‑conscious</span>
+            </div>
+        </section>
+
+        <!-- data safety — portfolio style, no Google Play legal -->
+        <div class="safety-grid">
+            <h3><i class="fas fa-lock"></i> Data safety & privacy</h3>
+            <div class="safety-item">
+                <i class="fas fa-times-circle" style="color:#22c55e;"></i> <span><strong>No data shared</strong> with third parties</span>
+            </div>
+            <div class="safety-item">
+                <i class="fas fa-database" style="color:#22c55e;"></i> <span><strong>No data collected</strong> — everything stays on your device</span>
+            </div>
+            <hr class="divider-light">
+            <div style="font-size:0.9rem; color:#334155; padding-top:0.2rem;">
+                <i class="fas fa-check-circle" style="color:#2563eb; margin-right:0.4rem;"></i>
+                Built with privacy in mind: images are processed via secure API, no logs retained.
+            </div>
+        </div>
+
+        <!-- what's new / changelog -->
+        <div class="update-box">
+            <strong><i class="fas fa-clock" style="margin-right:0.4rem; color:#2563eb;"></i> What's new</strong>
+            <p style="margin-top:0.2rem;">
+                Analyzes food images, detects ingredients or food labels, and calculates nutrition facts.
+                Updated to support the latest Android API level (target API 36) for improved security.
+            </p>
+        </div>
+
+        <!-- support & developer info (styled as portfolio) -->
+        <div class="support-row">
+            <span class="contact-item">
+                <i class="fas fa-phone-alt"></i>
+                <span><span class="label">Contact</span> +353 87 337 9336</span>
+            </span>
+            <span class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span><span class="label">Email</span> serge.zinenko@gmail.com</span>
+            </span>
+            <span class="contact-item">
+                <i class="fas fa-map-pin"></i>
+                <span><span class="label">Dublin</span> Ireland</span>
+            </span>
+        </div>
+
+        <!-- developer credit / meta -->
+        <div class="developer-note">
+            <div class="dev-detail">
+                <span><i class="fas fa-user-circle"></i> Sergey Zinenko</span>
+                <span><i class="fas fa-code"></i> independent developer</span>
+                <span><i class="fas fa-calendar-alt"></i> 2026</span>
+            </div>
+            <div>
+                <span class="btn-ghost"><i class="fas fa-google-play"></i> available on Google Play</span>
+            </div>
+        </div>
+
+        <!-- footer / portfolio context -->
+        <div class="footer-small">
+            <i class="fas fa-bolt" style="margin-right:0.3rem; color:#3b82f6;"></i>
+            Built as part of my portfolio · <a href="#" onclick="return false;">view on GitHub</a> · 
+            <span style="color:#94a3b8;">Nutrition Calculator+</span>
+        </div>
+    </div>
+</body>
+</html>
